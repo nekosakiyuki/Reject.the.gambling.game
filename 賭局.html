@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>賭局</title>
+  <style>
+    body {
+      background: #f7f7fa;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: #232323;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 750px;
+      margin: 32px auto;
+      padding: 24px 16px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(140,160,185,0.09);
+    }
+    .section {
+      margin-bottom: 24px;
+      padding-left: 8px;
+      border-left: 4px solid #4f8cff;
+      background: #f3f6ff;
+      border-radius: 6px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .quote {
+      color: #34495e;
+      font-size: 1.1em;
+      font-weight: 500;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.5px;
+      line-height: 1.7;
+    }
+    .form-area {
+      margin-top: 30px;
+      padding: 18px 10px;
+      border-radius: 8px;
+      background: #eaf1ff;
+      box-shadow: 0 0 6px 0 #e4e6ef44;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .form-area label {
+      font-size: 1.04em;
+      margin-bottom: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .form-area input[type="radio"] {
+      margin-right: 7px;
+      accent-color: #4f8cff;
+      width: 18px;
+      height: 18px;
+    }
+    .form-area input[type="text"] {
+      padding: 5px 7px;
+      border-radius: 4px;
+      border: 1px solid #c6d6ef;
+      margin-left: 8px;
+      font-size: 1em;
+      width: 170px;
+      outline: none;
+    }
+    .form-area input[type="text"]:focus {
+      border-color: #4f8cff;
+    }
+    .form-area button {
+      margin-top: 18px;
+      padding: 8px 26px;
+      font-size: 1.08em;
+      border-radius: 22px;
+      background: #4f8cff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: background 0.18s;
+    }
+    .form-area button:disabled {
+      background: #bfcfff;
+      cursor: not-allowed;
+    }
+    .msg {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #1a8d3c;
+      font-weight: 500;
+    }
+    .msg.error {
+      color: #c92e2e;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px 3vw;
+      }
+      .section {
+        padding-left: 5px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+      .quote {
+        font-size: 1em;
+      }
+      .form-area {
+        padding: 13px 4px;
+      }
+      .form-area input[type="text"] {
+        width: 90vw;
+        max-width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="section">
+      <div class="quote">
+        講得好像你是法官一樣，案件有沒有進入司法程序，不是你說了算。我也沒有義務向你公開偵查細節。基於「偵查不公開」原則，我現在當然不會在這裡交代細節，但我可以跟你打個公開的賭：
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        「等案件結束後，只要我能出示任何司法程序的證明（如立案、偵查通知、開庭傳票等），你就必須在同一平台公開承認自己錯誤、亂帶風向、抹黑騷擾等行為。」
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        你敢不敢賭？話不要說太滿，既然你一直說案件沒進入司法程序，也不敢接受我的賭局，那就代表你已經自認說不出個所以然來；反之，只要你肯接受賭局，就證明你有自信站得住腳。你要是不敢賭，以後就別再嘴這話題。
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        你堅持自己的說法沒問題，接受這個賭局對你來說根本沒有壓力。你若選擇不賭，往後你再講這類話，沒人會當真。不用拐彎抹角，敢就說敢，不敢賭的話就徹底閉嘴吧。
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        繼續玩你的課金排名遊戲。整天比高低真的沒什麼意思，尤其對我這種早就沒課金的人。你愛怎麼砸錢隨你，我沒興趣，也不想再跟你浪費時間。
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        留著你現在講的每一句，將來一一對照，到時候結果出來讓你自己打自己臉，這種事我不急。至於那些群組內容截圖，律師看過後都認為不構成證據，完全打回票。放心，律師挑的都是我們兩人私下的對話紀錄，其他不成立。
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        之前說要反告，現在又說不浪費資源，這樣不是互相矛盾嗎？話說得滿，結果又推翻自己，請問哪個才算數？既然說好不浪費資源，到時候真的被傳喚記得別反悔，希望你能記得今天的留言板話與自信，不要被傳喚了又喊不公平要反告喔。你的留言板我有錄影了。
+      </div>
+    </div>
+    <div class="section">
+      <div class="quote">
+        該說的都留紀錄了，不陪嘴不代表這件事就此結束，該做的我都在做，你慢慢等通知。封鎖。
+      </div>
+    </div>
+
+<div class="evidence-card">
+  <div class="evidence-title">拒絕賭局證明</div>
+  <a href="https://ibb.co/zWTjz1qV" target="_blank">
+    <img src="https://i.ibb.co/vC6gSb04/2025-09-09-172919.png" alt="2025-09-09-172919">
+  </a>
+</div>
+<style>
+.evidence-card {
+  background: #fafdff;
+  border-radius: 13px;
+  box-shadow: 0 3px 16px 0 #b8d1ff2a;
+  border: 1.5px solid #d5eaff;
+  padding: 16px 19px 17px 19px;
+  max-width: 430px;
+  margin: 18px auto 25px auto;
+  text-align: center;
+}
+.evidence-title {
+  background: linear-gradient(90deg,#4fc3f7 70%,#e3f0ff 100%);
+  color: #166db2;
+  font-weight: bold;
+  font-size: 1.08em;
+  letter-spacing: 2px;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 0 7px 0;
+  margin-bottom: 13px;
+  box-shadow: 0 1.5px 5px #d0eafd22;
+}
+.evidence-card img {
+  width: 100%;
+  max-width: 390px;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px #b3d2ff33;
+  transition: transform 0.18s;
+  border: 1px solid #b9d6fb;
+  margin: 0 auto;
+  display: block;
+}
+.evidence-card img:hover {
+  transform: scale(1.07);
+  box-shadow: 0 4px 16px #a5caf744;
+}
+@media (max-width: 600px) {
+  .evidence-card { max-width: 97vw; padding: 10px 2vw 10px 2vw; }
+  .evidence-card img { max-width: 94vw; }
+}
+</style>
+
+  </script>
+</body>
+</html>
