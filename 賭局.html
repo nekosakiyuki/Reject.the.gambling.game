@@ -166,56 +166,156 @@
       </div>
     </div>
 
-<div class="evidence-card">
-  <div class="evidence-title">拒絕賭局證明</div>
-  <a href="https://ibb.co/zWTjz1qV" target="_blank">
-    <img src="https://i.ibb.co/NgnHQbBK/2025-09-09-172913.png" alt="2025-09-09-172913">
-  </a>
+      <div class="evidence-card-row">
+  <div class="evidence-card-mini">
+    <div class="evidence-title-mini">拒絕賭局的證明</div>
+    <img src="https://i.ibb.co/NgnHQbBK/2025-09-09-172913.png" alt="拒絕賭局的證明" onclick="showModal(this)">
+    <div class="img-caption-mini">拒絕賭局的證明</div>
+  </div>
+<!-- 放大圖片遮罩（只需一組即可） -->
+<div class="img-modal" id="imgModal" onclick="closeModal()">
+  <div class="img-modal-content" onclick="event.stopPropagation()">
+    <button class="img-modal-close" onclick="closeModal()">&times;</button>
+    <img src="" alt="放大圖片" id="modalImg">
+  </div>
 </div>
+
 <style>
-.evidence-card {
+.evidence-card-row {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin: 30px 0 8px 0;
+  flex-wrap: wrap;
+}
+.evidence-card-mini {
   background: #fafdff;
   border-radius: 13px;
   box-shadow: 0 3px 16px 0 #b8d1ff2a;
   border: 1.5px solid #d5eaff;
-  padding: 16px 19px 17px 19px;
-  max-width: 430px;
-  margin: 18px auto 25px auto;
+  padding: 10px 10px 13px 10px;
+  width: 185px;
   text-align: center;
+  transition: box-shadow 0.18s;
+  position: relative;
 }
-.evidence-title {
+.evidence-title-mini {
   background: linear-gradient(90deg,#4fc3f7 70%,#e3f0ff 100%);
   color: #166db2;
   font-weight: bold;
-  font-size: 1.08em;
-  letter-spacing: 2px;
-  border-radius: 8px 8px 0 0;
-  padding: 8px 0 7px 0;
-  margin-bottom: 13px;
+  font-size: 1.01em;
+  letter-spacing: 1px;
+  border-radius: 6px 6px 0 0;
+  padding: 5px 0 5px 0;
+  margin-bottom: 8px;
   box-shadow: 0 1.5px 5px #d0eafd22;
 }
-.evidence-card img {
-  width: 100%;
-  max-width: 390px;
-  border-radius: 9px;
-  box-shadow: 0 2px 8px #b3d2ff33;
-  transition: transform 0.18s;
+.evidence-card-mini img {
+  width: 140px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 7px;
   border: 1px solid #b9d6fb;
-  margin: 0 auto;
+  cursor: pointer;
+  box-shadow: 0 1.5px 7px #b3d2ff33;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.evidence-card-mini img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 18px #a5caf744;
+  z-index: 2;
+}
+.img-caption-mini {
+  color: #4171b1;
+  font-size: 0.97em;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(32,50,89,0.85);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.12s;
+}
+.img-modal.active { display: flex; }
+.img-modal-content {
+  position: relative;
+  max-width: 94vw;
+  max-height: 85vh;
+  animation: popUp 0.18s;
+}
+.img-modal-content img {
+  border-radius: 11px;
+  box-shadow: 0 6px 50px #222c4b99;
+  background: #fff;
+  max-width: 94vw;
+  max-height: 80vh;
   display: block;
 }
-.evidence-card img:hover {
-  transform: scale(1.07);
-  box-shadow: 0 4px 16px #a5caf744;
+.img-modal-close {
+  position: absolute;
+  top: -28px;
+  right: -10px;
+  background: #fff;
+  color: #2257af;
+  border: none;
+  font-size: 2.1em;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1.5px 5px #b3d2ff55;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
 }
-@media (max-width: 600px) {
-  .evidence-card { max-width: 97vw; padding: 10px 2vw 10px 2vw; }
-  .evidence-card img { max-width: 94vw; }
+.img-modal-close:hover {
+  background: #4fc3f7;
+  color: #fff;
+}
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+@keyframes popUp {
+  from { transform: scale(0.85);}
+  to { transform: scale(1);}
+}
+@media (max-width: 700px) {
+  .evidence-card-row { flex-direction: column; gap: 14px;}
+  .evidence-card-mini { width: 97vw; }
+  .evidence-card-mini img { width: 80vw; height: 22vw; min-height: 60px; }
 }
 </style>
+<script>
+function showModal(img) {
+  document.getElementById('imgModal').classList.add('active');
+  document.getElementById('modalImg').src = img.src;
+  document.getElementById('modalImg').alt = img.alt;
+}
+function closeModal() {
+  document.getElementById('imgModal').classList.remove('active');
+  document.getElementById('modalImg').src = '';
+}
+// 按 ESC 關閉
+window.addEventListener('keydown', function(e){
+  if(e.key === "Escape") closeModal();
+});
+</script>
+  </script>
+
 
   </script>
 </body>
 
 </html>
+
 
