@@ -9,313 +9,849 @@
       background: #f7f7fa;
       font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
       color: #232323;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
       margin: 0;
       padding: 0;
       min-height: 100vh;
     }
     .container {
       max-width: 750px;
+      display: flex;
+      justify-content: center;
       margin: 32px auto;
       padding: 24px 16px;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(140,160,185,0.09);
     }
+    .video-watermark-follow {
+      position: fixed;
+      font-size: 2em;
+      color: rgba(255,255,255,0.56);
+      font-weight: bold;
+      text-shadow: 0 0 6px #0008;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    /* 證明區美化 */
+    .proof-section {
+      background: linear-gradient(102deg, #fafdff 70%, #e4ecfb 100%);
+      border-left: 6px solid #ff6b81;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px #89b4ed18;
+      padding: 22px 28px 22px 25px;
+      margin: 32px auto 32px auto;
+      max-width: 720px;
+      color: #222c3a;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      position: relative;
+      transition: box-shadow .18s;
+    }
+    .center-items {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .proof-title {
+      font-size: 1.19em;
+      font-weight: bold;
+      color: #d35400;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      justify-content: center;
+    }
+    .proof-icon {
+      font-size: 1.37em;
+    }
+    .proof-img-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    .proof-img-list img {
+      width: 130px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #ffb8c4;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #f8b6b933;
+      background: #fff;
+    }
+    .proof-img-list img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 24px #ffb8c48c;
+      border-color: #ee5253;
+    }
+    .proof-video-title {
+      font-size: 1.08em;
+      font-weight: 600;
+      color: #2157A5;
+      margin: 20px 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      justify-content: center;
+    }
+    .video-icon {
+      font-size: 1.25em;
+    }
+    .proof-video-thumb {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .proof-video-frame {
+      width: 320px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid #b9d7f8;
+      background: #000;
+      box-shadow: 0 1px 8px #b9d7f844;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .proof-video-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      pointer-events: auto;
+    }
+    .play-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.2em;
+      color: #fff;
+      background: rgba(40, 60, 80, 0.11);
+      pointer-events: none;
+      transition: background 0.18s;
+    }
+    .proof-video-thumb:hover .play-overlay {
+      background: rgba(40,60,80,0.25);
+    }
+    .proof-note {
+      color: #b84b0a;
+      font-size: 0.98em;
+      margin-top: 10px;
+      padding-left: 2px;
+      text-align: center;
+    }
+
+    /* 留言區美化 */
+    .section-list {
+      margin: 38px auto 28px auto;
+      max-width: 740px;
+      padding: 0 6px;
+    }
     .section {
-      margin-bottom: 24px;
-      padding-left: 8px;
+      margin-bottom: 21px;
+      padding: 14px 18px;
       border-left: 4px solid #4f8cff;
-      background: #f3f6ff;
-      border-radius: 6px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      background: linear-gradient(90deg, #f3f6ff 85%, #e7f0fa 100%);
+      border-radius: 7px;
       transition: background 0.2s;
+      box-shadow: 0 1.5px 7px #d3e4ff1e;
+    }
+    .section:last-child {
+      margin-bottom: 0;
     }
     .quote {
       color: #34495e;
-      font-size: 1.1em;
+      font-size: 1.13em;
       font-weight: 500;
-      margin: 0 0 8px 0;
+      margin: 0;
       letter-spacing: 0.5px;
-      line-height: 1.7;
+      line-height: 1.8;
+      word-break: break-all;
     }
-    .form-area {
-      margin-top: 30px;
-      padding: 18px 10px;
-      border-radius: 8px;
-      background: #eaf1ff;
-      box-shadow: 0 0 6px 0 #e4e6ef44;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .form-area label {
-      font-size: 1.04em;
-      margin-bottom: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-    }
-    .form-area input[type="radio"] {
-      margin-right: 7px;
-      accent-color: #4f8cff;
-      width: 18px;
-      height: 18px;
-    }
-    .form-area input[type="text"] {
-      padding: 5px 7px;
-      border-radius: 4px;
-      border: 1px solid #c6d6ef;
-      margin-left: 8px;
-      font-size: 1em;
-      width: 170px;
-      outline: none;
-    }
-    .form-area input[type="text"]:focus {
-      border-color: #4f8cff;
-    }
-    .form-area button {
-      margin-top: 18px;
-      padding: 8px 26px;
-      font-size: 1.08em;
-      border-radius: 22px;
-      background: #4f8cff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: background 0.18s;
-    }
-    .form-area button:disabled {
-      background: #bfcfff;
-      cursor: not-allowed;
-    }
-    .msg {
-      margin-top: 15px;
-      font-size: 1em;
-      color: #1a8d3c;
-      font-weight: 500;
-    }
-    .msg.error {
-      color: #c92e2e;
-    }
+
     @media (max-width: 600px) {
       .container {
         padding: 10px 3vw;
       }
+      .section-list {
+        max-width: 99vw; padding: 0 2vw;
+      }
       .section {
-        padding-left: 5px;
-        padding-top: 7px;
-        padding-bottom: 7px;
+        padding: 10px 6px;
       }
       .quote {
         font-size: 1em;
       }
-      .form-area {
-        padding: 13px 4px;
+      .proof-section {
+        padding: 14px 2vw 14px 2vw;
+        max-width: 99vw;
       }
-      .form-area input[type="text"] {
-        width: 90vw;
-        max-width: 220px;
+      .proof-img-list {
+        gap: 8px;
+      }
+      .proof-img-list img {
+        width: 32vw;
+        height: 22vw;
+        min-width: 80px;
+        min-height: 56px;
+        max-width: 150px;
+        max-height: 100px;
+      }
+      .proof-video-frame {
+        width: 98vw;
+        max-width: 340px;
+        height: 28vw;
+        min-height: 120px;
+        margin: 0 auto;
       }
     }
+    @media (prefers-color-scheme: dark) {
+      body { background: #181d26; color: #e7f1ff;}
+      .container { background: #222b3a; color: #eee;}
+      .proof-section {
+        background: linear-gradient(102deg, #20293a 70%, #25304a 100%);
+        color: #e7f1ff;
+        border-left-color: #ffb8c4;
+        box-shadow: 0 4px 20px #25477144;
+      }
+      .proof-title {
+        color: #ff9f43;
+      }
+      .proof-video-title {
+        color: #8cd2f6;
+      }
+      .proof-note {
+        color: #ffb97b;
+      }
+      .proof-img-list img {
+        border-color: #ff9fbc;
+        box-shadow: 0 2px 8px #e8639366;
+      }
+      .proof-img-list img:hover {
+        border-color: #ff6b81;
+      }
+      .proof-video-frame {
+        background: #151b2b;
+        border-color: #3b4b6a;
+      }
+      .section {
+        background: linear-gradient(90deg, #232e4a 85%, #344868 100%);
+        border-left-color: #4f8cff;
+        color: #e7f1ff;
+      }
+      .quote { color: #e7f1ff;}
+    }
+.img-lightbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(30,42,60,0.93);
+  animation: fadeIn 0.18s;
+}
+.img-lightbox-content {
+  max-width: 92vw;
+  max-height: 82vh;
+  border-radius: 14px;
+  box-shadow: 0 8px 40px #0008;
+  border: 3.5px solid #fff;
+  background: #fff;
+  margin: auto;
+  display: block;
+  transition: box-shadow .25s;
+  user-select: none;
+}
+#img-lightbox-img {
+  display: block;
+}
+#img-lightbox-video {
+  width: 70vw;
+  max-width: 900px;
+  height: 40vw;
+  max-height: 60vh;
+  min-width: 320px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222b3a;
+  border-radius: 16px;
+  border: 3.5px solid #fff;
+  box-shadow: 0 8px 40px #0008;
+}
+#img-lightbox-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  background: #000;
+}
+.img-lightbox-close {
+  position: absolute;
+  top: 22px; right: 38px;
+  font-size: 2.8em;
+  color: #fff;
+  text-shadow: 0 2px 8px #000c;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  transition: color 0.2s;
+}
+.img-lightbox-close:hover { color: #ff8686; }
+.img-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 2.4em;
+  color: #fff;
+  background: rgba(30,42,60,0.6);
+  border-radius: 50%;
+  width: 48px; height: 48px;
+  line-height: 48px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  box-shadow: 0 2px 12px #0007;
+  transform: translateY(-50%);
+  transition: background 0.2s, color 0.2s;
+}
+.img-lightbox-arrow.left  { left: 32px; }
+.img-lightbox-arrow.right { right: 32px; }
+.img-lightbox-arrow:hover { background: #ffb8c4; color: #d35400; }
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to   { opacity: 1;}
+}
+@media (max-width: 640px) {
+  #img-lightbox-img,
+  #img-lightbox-video {
+    max-width: 99vw !important;
+    max-height: 68vh !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: 98vw !important;
+    height: 45vw !important;
+  }
+  .img-lightbox-close {
+    top: 9px; right: 16px; font-size: 2.1em;
+  }
+  .img-lightbox-arrow.left  { left: 4px;  width: 36px; height: 36px; font-size: 1.5em; line-height: 36px;}
+  .img-lightbox-arrow.right { right: 4px; width: 36px; height: 36px; font-size: 1.5em; line-height: 36px;}
+}
+@media (prefers-color-scheme: dark) {
+  .img-lightbox {
+    background: rgba(20,24,38,0.98);
+  }
+  .img-lightbox-content,
+  #img-lightbox-video {
+    border: 3.5px solid #222b3a;
+    background: #222b3a;
+  }
+}
+.play-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2em;
+  color: #fff;
+  background: rgba(40, 60, 80, 0.11);
+  pointer-events: auto;           /* 這行很重要 */
+  cursor: pointer;                /* 讓滑鼠變成手指 */
+  transition: background 0.18s;
+  z-index: 2;
+}
+.proof-video-frame iframe {
+  pointer-events: none;           /* 禁止 iframe 吃掉事件 */
+}
+.proof-video-thumb:hover .play-overlay {
+  background: rgba(40,60,80,0.25);
+}
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="section">
-      <div class="quote">
-        講得好像你是法官一樣，案件有沒有進入司法程序，不是你說了算。我也沒有義務向你公開偵查細節。基於「偵查不公開」原則，我現在當然不會在這裡交代細節，但我可以跟你打個公開的賭：
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        「等案件結束後，只要我能出示任何司法程序的證明（如立案、偵查通知、開庭傳票等），你就必須在同一平台公開承認自己錯誤、亂帶風向、抹黑騷擾等行為。」
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        你敢不敢賭？話不要說太滿，既然你一直說案件沒進入司法程序，也不敢接受我的賭局，那就代表你已經自認說不出個所以然來；反之，只要你肯接受賭局，就證明你有自信站得住腳。你要是不敢賭，以後就別再嘴這話題。
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        你堅持自己的說法沒問題，接受這個賭局對你來說根本沒有壓力。你若選擇不賭，往後你再講這類話，沒人會當真。不用拐彎抹角，敢就說敢，不敢賭的話就徹底閉嘴吧。
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        繼續玩你的課金排名遊戲。整天比高低真的沒什麼意思，尤其對我這種早就沒課金的人。你愛怎麼砸錢隨你，我沒興趣，也不想再跟你浪費時間。
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        留著你現在講的每一句，將來一一對照，到時候結果出來讓你自己打自己臉，這種事我不急。至於那些群組內容截圖，律師看過後都認為不構成證據，完全打回票。放心，律師挑的都是我們兩人私下的對話紀錄，其他不成立。
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        之前說要反告，現在又說不浪費資源，這樣不是互相矛盾嗎？話說得滿，結果又推翻自己，請問哪個才算數？既然說好不浪費資源，到時候真的被傳喚記得別反悔，希望你能記得今天的留言板話與自信，不要被傳喚了又喊不公平要反告喔。你的留言板我有錄影了。
-      </div>
-    </div>
-    <div class="section">
-      <div class="quote">
-        該說的都留紀錄了，不陪嘴不代表這件事就此結束，該做的我都在做，你慢慢等通知。封鎖。
-      </div>
-    </div>
+  <!-- 浮水印 -->
+<div style="
+    position: fixed;
+    right: 24px;
+    bottom: 20px;
+    font-size: 2em;
+    color: rgba(255,255,255,0.42);
+    font-weight: bold;
+    text-shadow: 0 0 6px #0008;
+    user-select: none;
+    pointer-events: none;
+    z-index: 9999;
+  ">貓崎雪浮水印</div>
+</div><script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+document.getElementById('myVideo').addEventListener('keydown', e => e.preventDefault());
+</script>
 
-      <div class="evidence-card-row">
-  <div class="evidence-card-mini">
-    <div class="evidence-title-mini">拒絕賭局的證明</div>
-    <img src="https://i.ibb.co/NgnHQbBK/2025-09-09-172913.png" alt="拒絕賭局的證明" onclick="showModal(this)">
-    <div class="img-caption-mini">拒絕賭局的證明</div>
+<div class="proof-section">
+  <div class="proof-title">
+    <span class="proof-icon">🚫</span>
+    拒絕賭局證明
   </div>
-<!-- 放大圖片遮罩（只需一組即可） -->
-<div class="img-modal" id="imgModal" onclick="closeModal()">
-  <div class="img-modal-content" onclick="event.stopPropagation()">
-    <button class="img-modal-close" onclick="closeModal()">&times;</button>
-    <img src="" alt="放大圖片" id="modalImg">
+  <div class="center-items">
+    <div class="proof-img-list">
+      <img src="https://i.ibb.co/B2K3y5G5/2025-09-09-172913.png" alt="拒絕賭局證明1">
+      <img src="https://i.ibb.co/spzCWw6V/2025-09-09-172919.png" alt="拒絕賭局證明2">
+      <img src="https://i.ibb.co/4RDg31Bc/2025-09-09-213922.png" alt="拒絕賭局證明3">
+    </div>
+    <div class="proof-video-title">
+      <span class="video-icon">🎬</span>
+      相關影片
+    </div>
+<div class="proof-video-thumb" title="點擊可放大觀看">
+  <div class="proof-video-frame">
+    <iframe src="https://drive.google.com/file/d/1MiasBJMgNupq8VOCg6fgsaS1ICXz58rN/preview" width="320" height="180" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+    <div class="play-overlay">🔍</div>
+  </div>
+</div>
+  </div>
+  <div class="proof-note">
+    本證明相關圖片及影片，僅供線上查證，禁止下載或轉載。
+  </div>
+</div>
+<!-- 圖片/影片 Lightbox -->
+<div id="media-lightbox" class="img-lightbox" style="display:none;">
+  <span class="img-lightbox-close" title="關閉">&times;</span>
+  <span class="img-lightbox-arrow left" title="上一張">&#8592;</span>
+  <span class="img-lightbox-arrow right" title="下一張">&#8594;</span>
+  <img class="img-lightbox-content" id="img-lightbox-img" src="" alt="放大圖片">
+  <div class="img-lightbox-content" id="img-lightbox-video" style="display:none;">
+    <iframe id="lightbox-iframe"
+      src="https://drive.google.com/file/d/1MiasBJMgNupq8VOCg6fgsaS1ICXz58rN/preview"
+      frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 </div>
 
+
+<!-- 留言內容區 -->
+<div class="section-list">
+  <div class="section">
+    <div class="quote">
+      講得好像你是法官一樣，案件有沒有進入司法程序，不是你說了算。我也沒有義務向你公開偵查細節。基於「偵查不公開」原則，我現在當然不會在這裡交代細節，但我可以跟你打個公開的賭：
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      「等案件結束後，只要我能出示任何司法程序的證明（如立案、偵查通知、開庭傳票等），你就必須在同一平台公開承認自己錯誤、亂帶風向、抹黑騷擾等行為。」
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      你敢不敢賭？話不要說太滿，既然你一直說案件沒進入司法程序，也不敢接受我的賭局，那就代表你已經自認說不出個所以然來；反之，只要你肯接受賭局，就證明你有自信站得住腳。你要是不敢賭，以後就別再嘴這話題。
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      你堅持自己的說法沒問題，接受這個賭局對你來說根本沒有壓力。你若選擇不賭，往後你再講這類話，沒人會當真。不用拐彎抹角，敢就說敢，不敢賭的話就徹底閉嘴吧。
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      繼續玩你的課金排名遊戲。整天比高低真的沒什麼意思，尤其對我這種早就沒課金的人。你愛怎麼砸錢隨你，我沒興趣，也不想再跟你浪費時間。
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      留著你現在講的每一句，將來一一對照，到時候結果出來讓你自己打自己臉，這種事我不急。至於那些群組內容截圖，律師看過後都認為不構成證據，完全打回票。放心，律師挑的都是我們兩人私下的對話紀錄，其他不成立。
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      之前說要反告，現在又說不浪費資源，這樣不是互相矛盾嗎？話說得滿，結果又推翻自己，請問哪個才算數？既然說好不浪費資源，到時候真的被傳喚記得別反悔，希望你能記得今天的留言板話與自信，不要被傳喚了又喊不公平要反告喔。你的留言板我有錄影了。
+    </div>
+  </div>
+  <div class="section">
+    <div class="quote">
+      該說的都留紀錄了，不陪嘴不代表這件事就此結束，該做的我都在做，你慢慢等通知。封鎖。
+    </div>
+  </div>
+</div>
+
+<!-- ====== 隱私權政策 Footer 區塊放這裡 ====== -->
+  <footer>
+    <button class="privacy-toggle-btn" onclick="document.querySelector('.privacy-panel').classList.add('active')">
+      隱私權政策
+    </button>
+  <div id="privacyPanel" class="privacy-panel" tabindex="-1" aria-hidden="true">
+    <button class="privacy-close-btn" onclick="togglePrivacyPanel()" aria-label="關閉">&times;</button>
+    <h2>賭局 隱私權政策</h2>
+    <p>歡迎您使用「賭局」（以下簡稱本網站）。為保障您的隱私權與個人資料安全，請詳閱本政策內容，當您使用本網站時，即表示您同意本政策。</p>
+    <hr>
+   <h2>一、資料蒐集範圍</h2>
+<p>
+本網站會依實際服務需求，蒐集下列個人資料，並分別說明如下：
+</p>
+<ol>
+  <li>
+    <b>聯絡資訊</b>
+    <ul>
+      <li>蒐集情境：當用戶透過聯絡表單、電子郵件或其他管道，主動與我們聯絡或提交案件時。</li>
+      <li>使用目的：用於案件聯繫、身份確認、通知案件進度。</li>
+      <li>保存原則：僅於案件處理及爭議/訴訟需要期間保存，相關程序終止後即刪除。</li>
+    </ul>
+  </li>
+  <li>
+    <b>身分證明文件</b>
+    <ul>
+      <li>蒐集情境：當案件或第三方權益人需要進行身份驗證時，管理員得請求您提供身分證明文件。</li>
+      <li>使用目的：僅用於核對身份、避免冒名申請、維護案件公正性。</li>
+      <li>保存原則：訴訟結束後即予銷毀，不會另作他用。</li>
+    </ul>
+  </li>
+  <li>
+    <b>證據資料（截圖、影片、對話紀錄等）</b>
+    <ul>
+      <li>蒐集情境：當用戶主動上傳案件相關證據時。</li>
+      <li>蒐集項目：截圖、影片、文字紀錄、文件等。</li>
+      <li>使用目的：僅用於案件審核、糾紛處理、依法配合司法或訴訟程序。</li>
+      <li>保存原則：於案件、爭議或訴訟終止後即予刪除，除法律另有規定。</li>
+    </ul>
+  </li>
+  <li>
+    <b>第三方資訊</b>
+    <ul>
+      <li>蒐集情境：用戶所上傳的證據資料中，可能包含第三方之個人資料（如姓名、肖像、聯絡方式、對話內容等）。</li>
+      <li>蒐集項目：第三方姓名、肖像、聯絡方式、對話或其他可識別資訊。</li>
+      <li>使用目的：僅限於案件審核、糾紛處理、配合司法或訴訟程序之需要，不會用於其他目的或商業用途。</li>
+      <li>保存原則：與案件相關資料一併保存，於案件、爭議或訴訟終止後即予刪除，除法律另有規定。</li>
+      <li>第三方權益：若第三方認為其權益受損，可依本網站申訴流程提出刪除或遮蔽申請，網站將依法審查處理。</li>
+    </ul>
+  </li>
+  <li><strong>本網站不會主動蒐集您的IP位址、瀏覽器資訊、使用時間等技術性資料，亦不會使用Cookies或其他追蹤技術</strong>。所有蒐集之資料，僅限於本網站服務、案件處理及法定必要用途，絕不會用於任何商業或行銷用途。  </li>
+    </ul>
+    <hr>
+    <h2>二、資料使用方式</h2>
+    <ul>
+      <li>以上資料將僅用於<b>案件聲明、糾紛佐證、用戶間爭議處理</b>等本網站訴訟範圍內之用途。</li>
+      <li>本網站<b>不會將您的個人資料用於其他用途</b>，也不會出售、交換、出租，除非經您同意或法律要求。</li>
+      <li>若您主動公開留言、上傳截圖或影片，該內容可能會被其他用戶所見，請自行斟酌是否公開。</li>
+    </ul>
+    <hr>
+    <h2>三、資料安全與保護</h2>
+    <ul>
+      <li>本網站採取合理資訊安全措施，保障資料安全。</li>
+      <li>僅有授權人員可依業務需要查閱您的資料，未經授權人員不得擅自存取。</li>
+<li><b>非公開個人資料</b>，係指用戶向本網站管理員所提供，但<strong>未在本網站公開展示</strong>，僅限管理員或特定人員查閱之個人相關資訊。<br></li>
+  <li>例如：用戶透過聯絡表單或電子郵件提交的截圖、證據檔案、聯絡方式等，若尚未公開於本網站，均屬於非公開個人資料。<br></li>
+  <li><b>一旦資料被公開展示於本網站（如留言區、證據區、公開截圖等），即不再屬於非公開個人資料。</b></li>
+    </ul>
+    <hr>
+<h2>四、用戶權利</h2>
+<ul>
+  <li>您可依個人資料保護法，向我們請求查詢、閱覽、複製、補充、更正、停止蒐集、處理、利用或刪除您的個人資料。</li>
+  <li>若您有上述需求，請透過本網站聯絡我們，並請提供可識別身分之相關資訊。</li>
+  <li>用戶上傳但尚未公開於本網站的截圖、影片或相關檔案，經本人申請且審核同意後，得請求刪除。</li>
+  <li><b>已公開展示於本網站的證據資料（如截圖、影片等），原則上不受理刪除或更正申請，除非法律另有強制規定或經雙方協議。</b></li>
+  <li>您如欲撤回同意本網站處理您的個人資料，請與我們聯絡。撤回同意後，網站將停止處理您的個人資料，但已公開之內容原則上不作刪除或修正，除非法律另有強制規定。</li>
+  <li>您的個人資料將依本網站營運及訴訟需求保存，除法律另有規定外，於相關訴訟終止後即予刪除。</li>
+</ul>
+    <hr>
+<h2>五、政策修改</h2>
+<ul>
+  <li>本政策如有修正，將公布於本網站，恕不另行個別通知。</li>
+  <li>本網站有權隨時依實際需要及法令規定調整本政策內容，建議您隨時留意本頁公告內容。</li>
+  <li>重大變更事項（如資料蒐集範圍、使用目的調整等），本網站將於首頁或會員頁面顯著公告。</li>
+  <li>新修訂政策自公告日起生效，除非另有說明。</li>
+  <li>如您不同意修正內容，請立即停止使用本網站。惟因案件處理或法律規定，您所提供之資料將依法保存，無法任意刪除。</li>
+</ul>    <hr>
+    <p><b>貓崎雪 敬上</b></p>
+  </div>
+    <div style="margin-top:14px;font-size:0.97em;opacity:0.85;">
+      &copy; 2025 Your Website Name
+    </div>
+</footer>
+<!-- ====== 隱私權政策 Footer 區塊結束 ====== -->
+
+<script>
+    // 讓使用者按 ESC 也能關閉面板
+    document.addEventListener('keydown', function(e){
+      if(e.key === "Escape") {
+        document.querySelector('.privacy-panel').classList.remove('active');
+      }
+    });
+    // 點擊 panel 以外區域自動關閉（可選）
+    document.addEventListener('click', function(e){
+      var panel = document.querySelector('.privacy-panel');
+      if (panel.classList.contains('active')) {
+        if (!panel.contains(e.target) && !e.target.classList.contains('privacy-toggle-btn')) {
+          panel.classList.remove('active');
+        }
+      }
+    });
+  </script>
+
+<script>
+  // 隱私權政策摺疊功能
+  function togglePrivacyPanel() {
+    const panel = document.getElementById('privacyPanel');
+    const isOpen = panel.classList.toggle('active');
+    panel.setAttribute('aria-hidden', !isOpen);
+    if(isOpen){
+      panel.focus();
+      setTimeout(()=>{ panel.scrollIntoView({behavior:'smooth', block:'end'}); }, 100);
+    }
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === "Escape"){
+      document.getElementById('privacyPanel').classList.remove('active');
+    }
+  });
+</script>
+
 <style>
-.evidence-card-row {
-  display: flex;
-  gap: 18px;
-  justify-content: center;
-  margin: 30px 0 8px 0;
-  flex-wrap: wrap;
-}
-.evidence-card-mini {
-  background: #fafdff;
-  border-radius: 13px;
-  box-shadow: 0 3px 16px 0 #b8d1ff2a;
-  border: 1.5px solid #d5eaff;
-  padding: 10px 10px 13px 10px;
-  width: 185px;
+/* 隱私權政策專用CSS，可直接貼在你原本的style後面 */
+footer {
+  background: #232323;
+  color: #fff;
+  padding: 24px 0 16px 0;
   text-align: center;
-  transition: box-shadow 0.18s;
   position: relative;
 }
-.evidence-title-mini {
-  background: linear-gradient(90deg,#4fc3f7 70%,#e3f0ff 100%);
-  color: #166db2;
-  font-weight: bold;
-  font-size: 1.01em;
-  letter-spacing: 1px;
-  border-radius: 6px 6px 0 0;
-  padding: 5px 0 5px 0;
-  margin-bottom: 8px;
-  box-shadow: 0 1.5px 5px #d0eafd22;
-}
-.evidence-card-mini img {
-  width: 140px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 7px;
-  border: 1px solid #b9d6fb;
+.privacy-toggle-btn {
+  background: #fff;
+  color: #232323;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 10px 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px #0002;
   cursor: pointer;
-  box-shadow: 0 1.5px 7px #b3d2ff33;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, color 0.15s;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 0.1em;
 }
-.evidence-card-mini img:hover {
-  transform: scale(1.08);
-  box-shadow: 0 4px 18px #a5caf744;
+.privacy-toggle-btn:active {
+  background: #eaeaea;
+}
+.privacy-panel {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #22305a; /* 深藍色 */
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  padding: 18px 18px 10px 18px;
+  text-align: left;
+  font-size: 1em;
+  line-height: 1.82;
+  position: relative;
+  margin-bottom: 10px;
+  display: none;
+  animation: fadeIn 0.3s;
   z-index: 2;
 }
-.img-caption-mini {
-  color: #4171b1;
-  font-size: 0.97em;
-  margin-top: 6px;
-  margin-bottom: 0;
-}
-.img-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0; top: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(32,50,89,0.85);
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.12s;
-}
-.img-modal.active { display: flex; }
-.img-modal-content {
-  position: relative;
-  max-width: 94vw;
-  max-height: 85vh;
-  animation: popUp 0.18s;
-}
-.img-modal-content img {
-  border-radius: 11px;
-  box-shadow: 0 6px 50px #222c4b99;
-  background: #fff;
-  max-width: 94vw;
-  max-height: 80vh;
+.privacy-panel.active {
   display: block;
-}
-.img-modal-close {
-  position: absolute;
-  top: -28px;
-  right: -10px;
-  background: #fff;
-  color: #2257af;
-  border: none;
-  font-size: 2.1em;
-  font-weight: bold;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 1.5px 5px #b3d2ff55;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, color 0.2s;
-}
-.img-modal-close:hover {
-  background: #4fc3f7;
-  color: #fff;
+  animation: fadeIn 0.25s;
 }
 @keyframes fadeIn {
-  from { opacity: 0;}
-  to { opacity: 1;}
+  from { opacity: 0; transform: translateY(10px);}
+  to   { opacity: 1; transform: translateY(0);}
 }
-@keyframes popUp {
-  from { transform: scale(0.85);}
-  to { transform: scale(1);}
-}
-@media (max-width: 700px) {
-  .evidence-card-row { flex-direction: column; gap: 14px;}
-  .evidence-card-mini { width: 97vw; }
-  .evidence-card-mini img { width: 80vw; height: 22vw; min-height: 60px; }
+  .privacy-panel h2 {
+    font-size: 1.25em;
+    margin-top: 1.6em;
+    margin-bottom: 0.5em;
+    color: #8abfff; /* 輕微亮藍，可加強辨識 */
+    font-weight: bold;
+  }
+  .privacy-panel ul { margin: 0 0 1em 1.2em; }
+  .privacy-panel li { margin-bottom: 0.5em; }
+  .privacy-close-btn {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    font-size: 1.4em;
+    background: transparent;
+    border: none;
+    color: #b0c7ff;
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .privacy-close-btn:hover {
+    background: #294380;
+    color: #fff;
+  }
+  /* 捲軸優化（深色風格） */
+  .privacy-panel {
+    scrollbar-color: #3b4a77 #22305a;
+    scrollbar-width: thin;
+  }
+  .privacy-panel::-webkit-scrollbar {
+    width: 8px;
+    background: #22305a;
+  }
+  .privacy-panel::-webkit-scrollbar-thumb {
+    background: #3b4a77;
+    border-radius: 6px;
+  }
+  @media (max-width: 600px) {
+    .privacy-panel {
+      max-width: 98vw;
+      padding: 12px 6vw 8px 6vw;
+      font-size: 0.98em;
+    }
+    .privacy-toggle-btn {
+      width: 90vw;
+      max-width: 400px;
+      font-size: 1em;
+    }
 }
 </style>
+
 <script>
-function showModal(img) {
-  document.getElementById('imgModal').classList.add('active');
-  document.getElementById('modalImg').src = img.src;
-  document.getElementById('modalImg').alt = img.alt;
-}
-function closeModal() {
-  document.getElementById('imgModal').classList.remove('active');
-  document.getElementById('modalImg').src = '';
-}
-// 按 ESC 關閉
-window.addEventListener('keydown', function(e){
-  if(e.key === "Escape") closeModal();
+const imgList = Array.from(document.querySelectorAll('.proof-img-list img'));
+const modal = document.getElementById('media-lightbox');
+const modalImg = document.getElementById('img-lightbox-img');
+const modalVideo = document.getElementById('img-lightbox-video');
+let curIndex = 0;
+let isVideo = false;
+
+// 點擊圖片 -> 放大
+imgList.forEach((img, i) => {
+  img.addEventListener('click', () => {
+    isVideo = false;
+    curIndex = i;
+    modalImg.src = img.src;
+    modalImg.style.display = "block";
+    modalVideo.style.display = "none";
+    modal.style.display = "flex";
+    document.body.style.overflow = 'hidden';
+    showArrows();
+  });
 });
+
+// 點擊影片縮圖 -> 放大
+document.querySelector('.play-overlay').addEventListener('click', function(e){
+  e.stopPropagation(); // 防止事件冒泡到上層
+  isVideo = true;
+  modalImg.style.display = "none";
+  modalVideo.style.display = "flex";
+  modal.style.display = "flex";
+  document.body.style.overflow = 'hidden';
+  showArrows();
+  // 重設iframe（避免多次播放）
+  const iframe = modalVideo.querySelector('iframe');
+  iframe.src = iframe.src;
+});
+
+// 顯示/隱藏箭頭
+function showArrows() {
+  document.querySelector('.img-lightbox-arrow.left').style.display = (!isVideo && curIndex > 0) ? 'block' : 'none';
+  document.querySelector('.img-lightbox-arrow.right').style.display = (!isVideo && curIndex < imgList.length - 1) ? 'block' : 'none';
+}
+
+// 切換圖片
+function showImg(idx) {
+  if (isVideo) return;
+  if (idx < 0 || idx >= imgList.length) return;
+  curIndex = idx;
+  modalImg.src = imgList[curIndex].src;
+  showArrows();
+}
+
+// 左右箭頭
+document.querySelector('.img-lightbox-arrow.left').onclick  = e => { e.stopPropagation(); showImg(curIndex-1); };
+document.querySelector('.img-lightbox-arrow.right').onclick = e => { e.stopPropagation(); showImg(curIndex+1); };
+
+// 關閉
+document.querySelector('.img-lightbox-close').onclick = function(){
+  modal.style.display = "none";
+  modalImg.src = '';
+  document.body.style.overflow = '';
+  // 停止影片播放
+  if(isVideo){
+    const iframe = modalVideo.querySelector('iframe');
+    iframe.src = iframe.src;
+  }
+};
+modal.onclick = function(e){
+  if(e.target === this){
+    this.style.display = "none";
+    modalImg.src = '';
+    document.body.style.overflow = '';
+    if(isVideo){
+      const iframe = modalVideo.querySelector('iframe');
+      iframe.src = iframe.src;
+    }
+  }
+};
+
+// 鍵盤左右
+window.addEventListener('keydown', function(e){
+  if(modal.style.display === "flex") {
+    if(!isVideo && e.key==="ArrowLeft") showImg(curIndex-1);
+    if(!isVideo && e.key==="ArrowRight") showImg(curIndex+1);
+    if(e.key==="Escape") {
+      modal.style.display = "none";
+      modalImg.src = '';
+      document.body.style.overflow = '';
+      if(isVideo){
+        const iframe = modalVideo.querySelector('iframe');
+        iframe.src = iframe.src;
+      }
+    }
+  }
+});
+
+// 手機滑動
+let startX = null;
+modalImg.addEventListener('touchstart', function(e){
+  if (isVideo) return;
+  if (e.touches.length === 1) startX = e.touches[0].clientX;
+});
+modalImg.addEventListener('touchend', function(e){
+  if (isVideo || startX === null) return;
+  let dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 40) {
+    if (dx < 0 && curIndex < imgList.length-1) showImg(curIndex+1);
+    if (dx > 0 && curIndex > 0) showImg(curIndex-1);
+  }
+  startX = null;
+});
+
+    // 防右鍵、拖曳下載
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    video.addEventListener('keydown', e => e.preventDefault());
+
+    // 禁止複製事件（全站）
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+      alert('禁止複製本頁內容！');
+    });
+
 </script>
-  </script>
-
-
-  </script>
 </body>
-
 </html>
-
-
