@@ -387,6 +387,30 @@
 .proof-video-thumb:hover .play-overlay {
   background: rgba(40,60,80,0.25);
 }
+#backToTop {
+  position: fixed;
+  right: 32px;
+  bottom: 64px;
+  z-index: 1200;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #338edc 70%, #233b68 100%);
+  color: #fff;
+  border: none;
+  font-size: 1.7em;
+  box-shadow: 0 4px 14px #233b6840;
+  cursor: pointer;
+  display: none; /* 預設隱藏，由JS控制 */
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.18s;
+  font-weight: bold;
+}
+#backToTop:hover {
+  background: #23418b;
+  transform: scale(1.09);
+}
   </style>
 </head>
 <body>
@@ -409,6 +433,9 @@ document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
 document.getElementById('myVideo').addEventListener('keydown', e => e.preventDefault());
 </script>
+
+<!-- 回到頂部按鈕 -->
+<button id="backToTop" title="回到頂部" aria-label="回到頂部">↑</button>
 
 <div class="proof-section">
   <div class="proof-title">
@@ -494,6 +521,16 @@ document.getElementById('myVideo').addEventListener('keydown', e => e.preventDef
   </div>
 </div>
 
+<script>
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 380) backToTop.style.display = 'flex';
+  else backToTop.style.display = 'none';
+});
+backToTop.addEventListener('click', function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+</script>
 <!-- ====== 隱私權政策 Footer 區塊放這裡 ====== -->
   <footer>
     <button class="privacy-toggle-btn" onclick="document.querySelector('.privacy-panel').classList.add('active')">
